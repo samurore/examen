@@ -56,6 +56,7 @@ public class GestionMerceria {
         ProductoMerceria nuevoProducto = new ProductoMerceria(nombre, precio, cantidadDisponible);
         inventario.add(nuevoProducto);
         //System.out.println("Producto agregado: " + nuevoProducto);
+        System.out.println("Producto agregado: " + nuevoProducto);
     }
     
     /**
@@ -64,11 +65,17 @@ public class GestionMerceria {
 
     public void mostrarInventario() {
         if (inventario.isEmpty()) {
+
             //System.out.println("El inventario está vacío.");
         } else {
             //System.out.println("Inventario de la mercería:");
             for (ProductoMerceria producto : inventario) {
                // System.out.println(producto);
+            System.out.println("El inventario está vacío.");
+        } else {
+            System.out.println("Inventario de la mercería:");
+            for (ProductoMerceria producto : inventario) {
+                System.out.println(producto);
             }
         }
     }
@@ -89,6 +96,7 @@ public class GestionMerceria {
         }
         if (!encontrado) {
             //System.out.println("Producto no encontrado en el inventario.");
+            System.out.println("Producto no encontrado en el inventario.");
         }
     }
 
@@ -114,6 +122,7 @@ public class GestionMerceria {
         boolean ejecucion = true;
 
         while (ejecucion) {
+        Scanner scanner = new Scanner(System.in);        
             System.out.println("\nMenu:");
             System.out.println("1. Agregar producto al inventario");
             System.out.println("2. Mostrar inventario de la mercería");
@@ -149,6 +158,7 @@ public class GestionMerceria {
                     System.out.println("Saliendo del programa.");
                     ejecucion = false;
                     break;
+                    System.exit(0);
                 default:
                     System.out.println("Opción no válida. Intente de nuevo.");
             }
