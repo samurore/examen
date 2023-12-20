@@ -15,6 +15,7 @@ package com.mycompany.examenentornos;
 import com.stopwatch.IStopWatch;
 import com.stopwatch.StopWatch;
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class GestionMerceria {
@@ -37,7 +38,7 @@ public class GestionMerceria {
             }
         }
     }
-    private ArrayList<ProductoMerceria> inventario;
+    public ArrayList<ProductoMerceria> inventario;
 
     /**
      * gestionMercería gestiona la mercería.
@@ -56,7 +57,6 @@ public class GestionMerceria {
         ProductoMerceria nuevoProducto = new ProductoMerceria(nombre, precio, cantidadDisponible);
         inventario.add(nuevoProducto);
         //System.out.println("Producto agregado: " + nuevoProducto);
-        System.out.println("Producto agregado: " + nuevoProducto);
     }
     
     /**
@@ -65,17 +65,11 @@ public class GestionMerceria {
 
     public void mostrarInventario() {
         if (inventario.isEmpty()) {
-
             //System.out.println("El inventario está vacío.");
         } else {
             //System.out.println("Inventario de la mercería:");
             for (ProductoMerceria producto : inventario) {
                // System.out.println(producto);
-            System.out.println("El inventario está vacío.");
-        } else {
-            System.out.println("Inventario de la mercería:");
-            for (ProductoMerceria producto : inventario) {
-                System.out.println(producto);
             }
         }
     }
@@ -96,7 +90,6 @@ public class GestionMerceria {
         }
         if (!encontrado) {
             //System.out.println("Producto no encontrado en el inventario.");
-            System.out.println("Producto no encontrado en el inventario.");
         }
     }
 
@@ -111,7 +104,7 @@ public class GestionMerceria {
         IStopWatch relojStopWatch = StopWatch.create();
         relojStopWatch.start();
         int lista[]={1,2,3,4};
-         for(int i=0;i<1000000000;i++){
+         for(int i=0;i<100000;i++){
              gestionMerceria.mostrarInventario();
              gestionMerceria.agregarProducto("hola", 5, 10);
              gestionMerceria.venderProducto("hola", 10);
@@ -122,14 +115,13 @@ public class GestionMerceria {
         boolean ejecucion = true;
 
         while (ejecucion) {
-        Scanner scanner = new Scanner(System.in);        
             System.out.println("\nMenu:");
             System.out.println("1. Agregar producto al inventario");
             System.out.println("2. Mostrar inventario de la mercería");
             System.out.println("3. Vender producto");
             System.out.println("4. Salir");
             System.out.print("Seleccione una opción: ");
-            
+        try{
             int opcion = scanner.nextInt();
             scanner.nextLine(); // Consumir el salto de línea después del número
 
@@ -158,9 +150,12 @@ public class GestionMerceria {
                     System.out.println("Saliendo del programa.");
                     ejecucion = false;
                     break;
-                    System.exit(0);
                 default:
                     System.out.println("Opción no válida. Intente de nuevo.");
+                     }
+            } catch (InputMismatchException e) {
+                System.out.println("Por favor, ingrese un número válido.");
+                scanner.nextLine();
             }
         }
     }
